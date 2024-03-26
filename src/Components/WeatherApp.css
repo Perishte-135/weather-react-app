@@ -1,0 +1,400 @@
+/*Reset Styles*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+/*The end of Reset Styles*/
+/*Top Content Styles*/
+
+.container {
+  margin-top: -466px;
+  margin: auto;
+  width: 1440px;
+  height: 960px;
+  border-radius: 20px;
+  background-color: #D69E36;
+}
+
+.top-content {
+  display: flex;
+  padding: 51px 96px 0 97px;
+  color: #FFFFFF;
+}
+
+.info-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.location {
+  display: block;
+  background: url("./Assets/icons/locat.svg") center center no-repeat;
+  width: 30px;
+  height: 30px;
+}
+
+.cityName {
+  font-weight: 500;
+  line-height: 29.05px;
+  font-size: 24px;
+  margin-right: 5px;
+}
+
+.arrow {
+  width: 21px;
+  height: 30px;
+  margin-top: -5px;
+}
+
+.weather_condition {
+  margin-top: 40px;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 58.09px;
+}
+
+.temp {
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 77.45px;
+  margin-top: 100px;
+}
+
+.date {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.78px;
+}
+
+.image_content {
+  margin-left: 720px;
+  height: 321px;
+  width: 321px;
+}
+
+/*The end of Top Content Styles*/
+/*Main Content Styles*/
+
+.main_content {
+  margin-top: 24px;
+  display: flex;
+  padding: 0 42px 30px 40px;
+}
+
+.menu_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0 20px 0;
+  width: 100px;
+  height: 537px;
+  border-radius: 40px;
+  background: #DEAB4D;
+  opacity: 0.8;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+}
+
+.weather_icon {
+  margin-top: 99px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: url("./Assets/icons/weather-icon.svg") center center no-repeat;
+  margin-bottom: 2px;
+}
+
+.menu_text {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16.94px;
+  color: #FFFFFF;
+}
+
+.explore_icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: url("./Assets/icons/explore_icon.svg") center center no-repeat;
+  margin: 22px 0 2px 0;
+}
+
+.location_icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: url("./Assets/icons/location.svg") center center no-repeat;
+  margin: 22px 0 2px 0;
+}
+
+.settings_icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: url("./Assets/icons/Settings-alt.svg") center center no-repeat;
+  margin: 22px 0 2px 0;
+}
+
+.middle-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.activities-content {
+  width: 884px;
+  height: 244px;
+  background: #DEAB4D;
+  opacity: 0.8;
+  border-radius: 40px;
+  margin-left: 30px;
+}
+
+.title-wrap {
+  display: flex;
+  padding: 20px 0 0 35px;
+}
+
+.love_icon {
+  display: block;
+  background: url("./Assets/icons/love_icon.svg") center center no-repeat;
+  width: 30px;
+  height: 30px;
+}
+
+.title_text {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29.05px;
+  color: #FFFFFF;
+  margin-left: 4px;
+}
+
+.images_wrap {
+  display: flex;
+  flex-direction: row;
+  margin-top: 36px;
+  padding: 0 54.72px 34px 50px;
+}
+
+.image_wrap {
+   margin-right: 21.29px;
+  text-align: left;
+}
+
+.image_wrap:last-child {
+  margin-right: 0;
+}
+
+.activity_img {
+  width: 178.85px;
+  height: 108px;
+  border-radius: 10px;
+}
+
+.activity_text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.52px;
+  color:  #2B261D;
+
+}
+
+.graphic_block {
+  padding: 31px 20px 30px 30px;
+}
+
+.detailed_content {
+  border-radius: 40px;
+  width: 324px;
+  height: 537px;
+  background: #DEAB4D;
+  opacity: 0.8;
+  padding: 34px 0 47px 0;
+}
+
+
+.end_text {
+  line-height: 15.01px;
+  font-weight: 400;
+  font-size: 12.4px;
+  color: #FFFFFF;
+}
+
+.middle_text {
+  font-weight: 400;
+  line-height: 17.15px;
+  font-size: 14.17px;
+  color: #FFFFFF;
+}
+
+.center_text {
+  font-weight: 400;
+  line-height: 21.44px;
+  font-size: 17.72px;
+  color: #FFFFFF;
+}
+
+.first_cond {
+  width: 24.81px;
+  height: 24.81px;
+}
+
+.second_cond {
+  width: 26.58px;
+  height: 26.58px;
+}
+
+.third_cond {
+  width: 31.01px;
+  height: 30.12px;
+}
+
+.fourth_cond {
+  width: 26.58px;
+  height: 26.58px;
+}
+
+.fifth_cond {
+  width: 24.81px;
+  height: 24.81px;
+}
+
+.time_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16.05px;
+}
+
+.time {
+  display: block;
+  background: url("./Assets/icons/time.svg") center center no-repeat;
+  width: 14.4px;
+  height: 14.4px;
+  margin-right: 2.14px;
+}
+
+.time_text {
+  font-weight: 500;
+  font-size: 17.12px;
+  line-height: 20.71px;
+  color: #FFFFFF;
+}
+
+.air_conditions_block {
+  display: flex;
+  flex-direction: column;
+  background: url("./Assets/img/Vector 8 (1).png") bottom no-repeat;
+}
+
+.detail_title {
+  margin: 34px 0 0 16px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16.94px;
+  color: #FFFFFF;
+}
+
+.union_block {
+  display: flex;
+  align-items: center;
+}
+
+.temp_block {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 0 15px;
+  color: #FFFFFF;
+}
+
+.temp_icon {
+  display: block;
+  text-align: center;
+  background: url('./Assets/icons/temp_icon.svg') center center no-repeat;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.wind_block {
+  display: flex;
+  flex-direction: column;
+  padding: 45px 0 0 15px;
+  color: #FFFFFF;
+}
+
+.wind_icon {
+  display: block;
+  text-align: center;
+  background: url('./Assets/icons/wind_icon.svg') center center no-repeat;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.rain_block {
+  display: flex;
+  flex-direction: column;
+  padding: 45px 0 0 15px;
+  color: #FFFFFF;
+}
+
+.rain_icon {
+  display: block;
+  text-align: center;
+  background: url('./Assets/icons/rain_icon.svg') center center no-repeat;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.uv_block {
+  display: flex;
+  flex-direction: column;
+  padding: 45px 0  0 16px;
+  color: #FFFFFF;
+}
+
+.uv_icon {
+  display: block;
+  text-align: center;
+  background: url('./Assets/icons/Sun.svg') center center no-repeat;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.subj {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.52px;
+}
+
+.detail {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.36px;
+  margin-left: 30px;
+}
+
+/*The end of Main Content Styles*/
