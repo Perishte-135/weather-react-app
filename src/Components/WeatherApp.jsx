@@ -14,6 +14,7 @@ import clear_icon from './Assets/icons/117.svg';
 import rainy_icon from './Assets/icons/icon (1).svg';
 import thunder_icon from './Assets/icons/389.svg'
 import arrow_icon from './Assets/img/arrow.png';
+
 const WeatherApp = () => {
   const [inputValue, setInputValue] = useState('');
   const [weatherData, setWeatherData] = useState('');
@@ -32,15 +33,15 @@ const WeatherApp = () => {
     console.log(inputValue);
   }
 
-  const handleSearchCity = async() => {
-    if(inputValue === "") {
+  const handleSearchCity = async () => {
+    if (inputValue === "") {
       const error = document.querySelector('.error_text');
       error.style.display = "block";
       setErrorText("Please fill in the City name!");
       return;
     }
     try {
-      if(inputValue !== "") {
+      if (inputValue !== "") {
         const error = document.querySelector('.error_text');
         error.style.display = "none";
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${API_KEY}`;
@@ -56,7 +57,7 @@ const WeatherApp = () => {
         console.log(data);
         console.log(weatherData);
       }
-    } catch(err) {
+    } catch (err) {
       const error = document.querySelector('.error_text');
       error.style.display = "block";
       setErrorText("Error happened while fetching weather data!", err);
@@ -97,32 +98,33 @@ const WeatherApp = () => {
   const dateString = `${dayOfWeekName} | ${day} ${monthName} ${year}`;
 
 
-  return(
+  return (
     <div className="container">
       <div className="top-content">
         <div className="info-content">
           <div className="error_text">{errorText}</div>
           <div className="location-wrap">
             <i className="location"></i>
-            <input type="text" placeholder="New York" className="cityName" value={inputValue} onChange={handleInputValue} />
-            <img src={arrow_icon} alt="arrow" className="arrow" onClick={handleSearchCity} />
+            <input type="text" placeholder="New York" className="cityName" value={inputValue}
+                   onChange={handleInputValue}/>
+            <img src={arrow_icon} alt="arrow" className="arrow" onClick={handleSearchCity}/>
           </div>
-          <h3 className="weather_condition">{weatherData && weatherData.weather && weatherData.weather.length > 0 ? weatherData.weather[0].main : ''}</h3>
+          <h3
+            className="weather_condition">{weatherData && weatherData.weather && weatherData.weather.length > 0 ? weatherData.weather[0].main : ''}</h3>
           {weatherData && weatherData.main && typeof weatherData.main.temp !== 'undefined' && (
             <h2 className="temp">{Math.ceil(weatherData.main.temp - 273)}°C</h2>
           )}
           <p className="date">
-            {dateString}
-            {/*{weatherData.dt}*/}
+            {weatherData ? dateString : ''}
           </p>
         </div>
         <div className="image_content">
-          <img src={cloud_icon} alt="weather-condition-icon" />
+          <img src={cloud_icon} alt="weather-condition-icon"/>
         </div>
       </div>
       <div className="main_content">
         <div className="menu_content">
-          <img src={avatar_icon} alt="avat" className="avatar" />
+          <img src={avatar_icon} alt="avat" className="avatar"/>
           <i className="weather_icon"></i>
           <p className="menu_text">weather</p>
           <i className="explore_icon"></i>
@@ -132,35 +134,35 @@ const WeatherApp = () => {
           <i className="settings_icon"></i>
           <p className="menu_text">settings</p>
         </div>
-       <div className="middle-content">
-         <div className="activities-content">
-           <div className="title-wrap">
-             <i className="love_icon"></i>
-             <p className="title_text">Activities in your area</p>
-           </div>
-           <div className="images_wrap">
-             <div className="image_wrap">
-               <img src={first_activity} alt="first_activity" className="activity_img" />
-               <p className="activity_text">2km away</p>
-             </div>
-             <div className="image_wrap">
-               <img src={second_activity} alt="second_activity" className="activity_img" />
-               <p className="activity_text">1.5km away</p>
-             </div>
-             <div className="image_wrap">
-               <img src={third_activity} alt="third_activity" className="activity_img" />
-               <p className="activity_text">3km away</p>
-             </div>
-             <div className="image_wrap">
-               <img src={fourth_activity} alt="fourth_activity" className="activity_img" />
-               <p className="activity_text">500m away</p>
-             </div>
-           </div>
-       </div>
-         <div className="graphic_block">
-           <img src={graphic_img} alt="graphic" />
-         </div>
-       </div>
+        <div className="middle-content">
+          <div className="activities-content">
+            <div className="title-wrap">
+              <i className="love_icon"></i>
+              <p className="title_text">Activities in your area</p>
+            </div>
+            <div className="images_wrap">
+              <div className="image_wrap">
+                <img src={first_activity} alt="first_activity" className="activity_img"/>
+                <p className="activity_text">2km away</p>
+              </div>
+              <div className="image_wrap">
+                <img src={second_activity} alt="second_activity" className="activity_img"/>
+                <p className="activity_text">1.5km away</p>
+              </div>
+              <div className="image_wrap">
+                <img src={third_activity} alt="third_activity" className="activity_img"/>
+                <p className="activity_text">3km away</p>
+              </div>
+              <div className="image_wrap">
+                <img src={fourth_activity} alt="fourth_activity" className="activity_img"/>
+                <p className="activity_text">500m away</p>
+              </div>
+            </div>
+          </div>
+          <div className="graphic_block">
+            <img src={graphic_img} alt="graphic"/>
+          </div>
+        </div>
         <div className="detailed_content">
           <Slider {...settings}>
             <div className="block">
@@ -187,7 +189,7 @@ const WeatherApp = () => {
           <div className="time_block">
             <i className="time"></i>
             <p className="time_text">
-              {adjustedTime} GMT
+              {weatherData ? adjustedTime : ''} GMT
             </p>
           </div>
           <div className="air_conditions_block">
@@ -208,14 +210,16 @@ const WeatherApp = () => {
                 <i className="wind_icon"></i>
                 <p className="subj">Wind</p>
               </div>
-              <p className="detail">{weatherData && weatherData.wind && typeof weatherData.wind.speed !=='undefined'? `${weatherData.wind.speed} km/hr` : ''}</p>
+              <p
+                className="detail">{weatherData && weatherData.wind && typeof weatherData.wind.speed !== 'undefined' ? `${weatherData.wind.speed} km/hr` : ''}</p>
             </div>
             <div className="rain_block">
               <div className="union_block">
                 <i className="rain_icon"></i>
                 <p className="subj">Chance of rain</p>
               </div>
-              <p className="detail">{weatherData && weatherData.main && typeof weatherData.main.humidity!=='undefined'? `${weatherData.main.humidity} %` : ''}</p>
+              <p
+                className="detail">{weatherData && weatherData.main && typeof weatherData.main.humidity !== 'undefined' ? `${weatherData.main.humidity} %` : ''}</p>
             </div>
             <div className="uv_block">
               <div className="union_block">
@@ -232,3 +236,5 @@ const WeatherApp = () => {
 }
 
 export default WeatherApp;
+
+

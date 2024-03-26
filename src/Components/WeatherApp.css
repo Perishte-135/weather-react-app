@@ -211,7 +211,7 @@ body {
 }
 
 .image_wrap {
-   margin-right: 21.29px;
+  margin-right: 21.29px;
   text-align: left;
 }
 
@@ -229,7 +229,7 @@ body {
   font-weight: 500;
   font-size: 12px;
   line-height: 14.52px;
-  color:  #2B261D;
+  color: #2B261D;
 
 }
 
@@ -385,7 +385,7 @@ body {
 .uv_block {
   display: flex;
   flex-direction: column;
-  padding: 45px 0  0 16px;
+  padding: 45px 0 0 16px;
   color: #FFFFFF;
 }
 
@@ -420,3 +420,5 @@ body {
 }
 
 /*The end of Main Content Styles*/
+
+
