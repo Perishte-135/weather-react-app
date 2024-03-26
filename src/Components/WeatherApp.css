@@ -50,6 +50,20 @@ body {
   line-height: 29.05px;
   font-size: 24px;
   margin-right: 5px;
+  border: none;
+  outline: none;
+  background: none;
+  width: 100px;
+  color: #FFFFFF;
+}
+
+.cityName::placeholder {
+  color: #FFFFFF;
+}
+
+.cityName:focus {
+  border: none;
+  color: #FFFFFF;
 }
 
 .arrow {
@@ -395,6 +409,14 @@ body {
   font-weight: 500;
   line-height: 19.36px;
   margin-left: 30px;
+}
+
+.error_text {
+  display: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: red;
+  margin-top: -10px;
 }
 
 /*The end of Main Content Styles*/

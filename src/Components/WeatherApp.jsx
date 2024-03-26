@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './WeatherApp.css';
 import cloud_icon from './Assets/img/cloud (1).png';
 import avatar_icon from './Assets/img/avatar (2).png';
@@ -15,6 +15,10 @@ import rainy_icon from './Assets/icons/icon (1).svg';
 import thunder_icon from './Assets/icons/389.svg'
 import arrow_icon from './Assets/img/arrow.png';
 const WeatherApp = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [weatherData, setWeatherData] = useState('');
+  const [errorText, setErrorText] = useState("");
+  const API_KEY = "981449d42dee0d5e8e44fd764e52bd2c";
   const settings = {
     dots: false,
     infinite: true,
@@ -22,18 +26,95 @@ const WeatherApp = () => {
     slidesToShow: 5,
     slidesToScroll: 1
   };
+
+  const handleInputValue = (event) => {
+    setInputValue(event.target.value);
+    console.log(inputValue);
+  }
+
+  const handleSearchCity = async() => {
+    if(inputValue === "") {
+      const error = document.querySelector('.error_text');
+      error.style.display = "block";
+      setErrorText("Please fill in the City name!");
+      return;
+    }
+    try {
+      if(inputValue !== "") {
+        const error = document.querySelector('.error_text');
+        error.style.display = "none";
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${API_KEY}`;
+        const response = await fetch(url);
+        if (response.status === 404) {
+          const error = document.querySelector('.error_text');
+          error.style.display = "block";
+          setErrorText("City not found! Try again");
+          return;
+        }
+        const data = await response.json();
+        setWeatherData(data);
+        console.log(data);
+        console.log(weatherData);
+      }
+    } catch(err) {
+      const error = document.querySelector('.error_text');
+      error.style.display = "block";
+      setErrorText("Error happened while fetching weather data!", err);
+    }
+  }
+
+  //to get date from unix time
+  const months = [
+    "Jan", "Feb", "Mar", "Apr",
+    "May", "Jun", "Jul", "Aug",
+    "Sep", "Oct", "Nov", "Dec"
+  ];
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  const unixTime = weatherData.dt;
+  const milliseconds = unixTime * 1000;
+  const date = new Date(milliseconds);
+  const year = date.getFullYear();
+  const monthIndex = date.getMonth(); // Month starts from 0
+  const day = date.getDate();
+  const monthName = months[monthIndex];
+  const dayOfWeekIndex = date.getDay();
+  const dayOfWeekName = daysOfWeek[dayOfWeekIndex];
+  //to get time
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  let adjustedHours = hours + weatherData.timezone;
+  if (adjustedHours < 0) {
+    adjustedHours += 24;
+  } else if (adjustedHours >= 24) {
+    adjustedHours -= 24;
+  }
+
+// Format the adjusted time
+  const adjustedFormattedHours = adjustedHours % 12 || 12;
+  const adjustedAmOrPm = adjustedHours >= 12 ? 'PM' : 'AM';
+  const adjustedTime = `${adjustedFormattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${adjustedAmOrPm}`;
+  const dateString = `${dayOfWeekName} | ${day} ${monthName} ${year}`;
+
+
   return(
     <div className="container">
       <div className="top-content">
         <div className="info-content">
+          <div className="error_text">{errorText}</div>
           <div className="location-wrap">
             <i className="location"></i>
-            <p className="cityName">New York</p>
-            <img src={arrow_icon} alt="arrow" className="arrow" />
+            <input type="text" placeholder="New York" className="cityName" value={inputValue} onChange={handleInputValue} />
+            <img src={arrow_icon} alt="arrow" className="arrow" onClick={handleSearchCity} />
           </div>
-          <h3 className="weather_condition">Cloudy</h3>
-          <h2 className="temp">26°C</h2>
-          <p className="date">Sunday | 12 Dec 2023</p>
+          <h3 className="weather_condition">{weatherData && weatherData.weather && weatherData.weather.length > 0 ? weatherData.weather[0].main : ''}</h3>
+          {weatherData && weatherData.main && typeof weatherData.main.temp !== 'undefined' && (
+            <h2 className="temp">{Math.ceil(weatherData.main.temp - 273)}°C</h2>
+          )}
+          <p className="date">
+            {dateString}
+            {/*{weatherData.dt}*/}
+          </p>
         </div>
         <div className="image_content">
           <img src={cloud_icon} alt="weather-condition-icon" />
@@ -91,7 +172,7 @@ const WeatherApp = () => {
               <img src={sun_icon} alt="icon" className="second_cond"/>
             </div>
             <div className="block">
-              <p className="center_text">Sun</p>
+              <p className="center_text">{dayOfWeekName}</p>
               <img src={clear_icon} alt="icon" className="third_cond"/>
             </div>
             <div className="block">
@@ -105,7 +186,9 @@ const WeatherApp = () => {
           </Slider>
           <div className="time_block">
             <i className="time"></i>
-            <p className="time_text">8:00PM GMT</p>
+            <p className="time_text">
+              {adjustedTime} GMT
+            </p>
           </div>
           <div className="air_conditions_block">
             <div className="detail_title">
@@ -116,21 +199,23 @@ const WeatherApp = () => {
                 <i className="temp_icon"></i>
                 <p className="subj">Real Feel</p>
               </div>
-              <p className="detail">30°</p>
+              {weatherData && weatherData.main && typeof weatherData.main.temp !== 'undefined' && (
+                <p className="detail">{Math.ceil(weatherData.main.feels_like - 273)}°C</p>
+              )}
             </div>
             <div className="wind_block">
               <div className="union_block">
                 <i className="wind_icon"></i>
                 <p className="subj">Wind</p>
               </div>
-              <p className="detail">0.8 km/hr</p>
+              <p className="detail">{weatherData && weatherData.wind && typeof weatherData.wind.speed !=='undefined'? `${weatherData.wind.speed} km/hr` : ''}</p>
             </div>
             <div className="rain_block">
               <div className="union_block">
                 <i className="rain_icon"></i>
                 <p className="subj">Chance of rain</p>
               </div>
-              <p className="detail">2 %</p>
+              <p className="detail">{weatherData && weatherData.main && typeof weatherData.main.humidity!=='undefined'? `${weatherData.main.humidity} %` : ''}</p>
             </div>
             <div className="uv_block">
               <div className="union_block">
