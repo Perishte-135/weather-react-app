@@ -13,8 +13,8 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 able for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 How to use app.
-1.Before running the app kindly download npm library for running the app  with the command npm i.
-2.To run the app kindly enter the command  npm start.
+1.Before running the app kindly download npm library for running the app  with the command npm i in the terminal.
+2.To run the app kindly enter the command  npm start in the terminal.
 
 Description of the app.
 Weather react app is an app for checking weather in different cities of the world.it provides you with such information as main condition of the weather, temperature, humidity, wind speed, 
