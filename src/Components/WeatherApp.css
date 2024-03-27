@@ -3,39 +3,45 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  opacity: 1;
 }
 
 body {
   font-family: "Inter", sans-serif;
+  opacity: 1;
 }
 
 /*The end of Reset Styles*/
 /*Top Content Styles*/
 
+
 .container {
-  margin-top: -466px;
   margin: auto;
-  width: 1440px;
-  height: 960px;
+  max-width: 1440px;
+  width: 100%;
   border-radius: 20px;
   background-color: #D69E36;
+  padding: 51px 0 30px 0;
+  opacity: 1;
 }
 
 .top-content {
   display: flex;
-  padding: 51px 96px 0 97px;
+  flex-direction: column;
+  padding: 0 96px 0 97px;
   color: #FFFFFF;
 }
 
 .info-wrap {
   display: flex;
   flex-direction: column;
+
 }
 
 .location-wrap {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 51px;
+  order: 1;
 }
 
 .location {
@@ -55,6 +61,7 @@ body {
   background: none;
   width: 100px;
   color: #FFFFFF;
+  margin-bottom: 300px;
 }
 
 .cityName::placeholder {
@@ -67,13 +74,25 @@ body {
 }
 
 .arrow {
+  display: block;
+  background: url('Assets/img/arrow.png') center center no-repeat;
   width: 21px;
   height: 30px;
   margin-top: -5px;
 }
 
+.title {
+  margin-top: -260px;
+  order: 2;
+}
+
+.info-content {
+  order: 3;
+  margin-top: 100px;
+  margin-bottom: 24px;
+}
+
 .weather_condition {
-  margin-top: 40px;
   font-weight: 500;
   font-size: 48px;
   line-height: 58.09px;
@@ -83,7 +102,6 @@ body {
   font-weight: 500;
   font-size: 64px;
   line-height: 77.45px;
-  margin-top: 100px;
 }
 
 .date {
@@ -94,9 +112,16 @@ body {
 }
 
 .image_content {
-  margin-left: 720px;
   height: 321px;
   width: 321px;
+  margin-left: 720px;
+  margin-top: -362px;
+  order: 4;
+  margin-bottom: 20px;
+}
+
+.image_content img {
+  width: 100%;
 }
 
 /*The end of Top Content Styles*/
@@ -105,7 +130,7 @@ body {
 .main_content {
   margin-top: 24px;
   display: flex;
-  padding: 0 42px 30px 40px;
+  padding: 0 42px 0 40px;
 }
 
 .menu_content {
@@ -235,6 +260,14 @@ body {
 
 .graphic_block {
   padding: 31px 20px 30px 30px;
+}
+
+.graphic {
+  display: block;
+  background: url('Assets/img/24hrs forecast.png') center center no-repeat;
+  width: 884px;
+  height: 262px;
+  border-radius: 40px;
 }
 
 .detailed_content {
@@ -419,6 +452,296 @@ body {
   margin-top: -10px;
 }
 
+/*Adaptive design*/
 /*The end of Main Content Styles*/
+
+/*for monitor 1280px*/
+@media all and (max-width: 1280px) and (min-width: 1024px) {
+  .container {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .activities-content {
+    max-width: 684px;
+    width: 100%;
+  }
+
+  #fourth_activity {
+    display: none;
+  }
+
+  #fourth_text {
+    display: none;
+  }
+
+  .graphic {
+    max-width: 684px;
+    width: 100%;
+  }
+
+  .detailed_content {
+    margin-left: 20px;
+  }
+}
+
+/*The end of styles for monitor 1280px*/
+
+/* Styles for monitor till 1024px*/
+@media all and (max-width: 1024px) and (min-width: 800px) {
+  .container {
+    max-width: 1024px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .middle-content {
+    display: none;
+  }
+
+  .image_content {
+    margin-left: 400px;
+  }
+
+  .detailed_content {
+    margin-left: 350px;
+  }
+
+  .subj {
+    font-size: 16px;
+  }
+
+  .detail {
+    font-size: 20px;
+  }
+}
+
+/*Styles for monitor till 1024px*/
+/* Styles for monitor till 800px*/
+@media all and (max-width: 800px) and (min-width: 440px) {
+  .container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .middle-content {
+    display: none;
+  }
+
+  .image_content {
+    margin-left: 200px;
+  }
+
+  .detailed_content {
+    margin-left: 150px;
+  }
+
+  .weather_condition {
+    font-size: 64px;
+  }
+
+  .date {
+    font-size: 25px;
+  }
+
+  .subj {
+    font-size: 16px;
+  }
+
+  .detail {
+    font-size: 20px;
+  }
+}
+
+/* The end of styles for monitor till 800 px*/
+
+/* Iphone 14 Pro Max-1 design styles */
+@media all and (max-width: 440px) {
+  .container {
+    max-width: 430px;
+    width: 100%;
+    border-radius: 17px;
+    padding: 0;
+  }
+
+  .error_text {
+    margin-top: 0;
+  }
+
+  .top-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  .location-wrap {
+    margin-top: 0;
+    margin-left: -240px;
+    padding: 40px 0 0 33px;
+  }
+
+  .location {
+    width: 28px;
+    height: 28px;
+  }
+
+  .cityName {
+    width: 95px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24.2px;
+  }
+
+  .arrow {
+    display: block;
+    background: url("./Assets/icons/arrow_down.svg") center center no-repeat;
+    width: 24px;
+    height: 24px;
+  }
+
+  .error_text {
+    margin-top: 0;
+  }
+
+  .title {
+    margin-top: -180px;
+    order: 2;
+  }
+
+  .location-wrap {
+    order: 1;
+  }
+
+  .image_content {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+    margin-left: 0;
+    order: 3;
+    margin-top: 0;
+    margin-top: 15px;
+  }
+
+  .image_content img {
+    width: 100%;
+  }
+
+  .info-content {
+    order: 4;
+    margin-top: 0;
+  }
+
+  .date {
+    margin-top: 13px;
+  }
+
+  .menu_content {
+    width: 0;
+    height: 0;
+    position: relative;
+  }
+
+  .avatar {
+    position: absolute;
+    top: -595px;
+    left: 330px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .menu_content p,
+  .menu_content i {
+    display: none;
+  }
+
+  .activities-content {
+    display: none;
+  }
+
+  .main_content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .detailed_content {
+    order: 1;
+    width: 365px;
+    height: 64px;
+    border-radius: 0;
+    background: #DEAB4D;
+    opacity: initial;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  .detailed_content .time_block,
+  .time, .time_text,
+  .air_conditions_block {
+    display: none;
+  }
+
+  .end_text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+
+  .middle_text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.36px;
+  }
+
+  .center_text {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24.2px;
+    margin-top: -6px;
+    margin-left: -7px;
+  }
+
+  .first_cond, .fifth_cond {
+    height: 28px;
+    width: 28px;
+  }
+
+  .second_cond, .fourth_cond {
+    width: 30px;
+    height: 30px;
+  }
+
+  .third_cond {
+    width: 35px;
+    height: 34px;
+    margin-top: -5px;
+  }
+
+  .middle-content {
+    order: 2;
+  }
+
+  .graphic_block {
+    display: flex;
+    margin-top: 32px;
+    padding: 0;
+  }
+
+  .graphic {
+    display: block;
+    width: 382px;
+    height: 285px;
+    background-image: none, url('Assets/img/mobile_graphic.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+  }
+}
+
+/* The end of Iphone 14 Pro Max-1 design styles */
 
 

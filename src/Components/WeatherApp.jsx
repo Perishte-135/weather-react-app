@@ -6,19 +6,22 @@ import first_activity from './Assets/img/Rectangle 15.png';
 import second_activity from './Assets/img/Rectangle 16.png';
 import third_activity from './Assets/img/Rectangle 17.png';
 import fourth_activity from './Assets/img/Rectangle 18.png';
-import graphic_img from './Assets/img/24hrs forecast.png' ;
 import cloud from './Assets/icons/308.svg';
 import Slider from "react-slick";
 import sun_icon from './Assets/icons/113.svg';
 import clear_icon from './Assets/icons/117.svg';
 import rainy_icon from './Assets/icons/icon (1).svg';
 import thunder_icon from './Assets/icons/389.svg'
-import arrow_icon from './Assets/img/arrow.png';
+import drizzle_icon from './Assets/img/drizzle.png';
+import rain_icon from './Assets/img/rain.png';
+import snow_icon from './Assets/img/snow.png';
+import clear_ic from './Assets/img/clear.png';
 
 const WeatherApp = () => {
   const [inputValue, setInputValue] = useState('');
   const [weatherData, setWeatherData] = useState('');
   const [errorText, setErrorText] = useState("");
+  const [icon, setIcon] = useState('cloud_icon');
   const API_KEY = "981449d42dee0d5e8e44fd764e52bd2c";
   const settings = {
     dots: false,
@@ -56,6 +59,24 @@ const WeatherApp = () => {
         setWeatherData(data);
         console.log(data);
         console.log(weatherData);
+
+        if (data.weather[0].icon === "01d" || data.weather[0].icon === "01n") {
+          setIcon(clear_ic);
+        } else if (data.weather[0].icon === "02d" || data.weather[0].icon === "02n") {
+          setIcon(cloud_icon);
+        } else if (data.weather[0].icon === "03d" || data.weather[0].icon === "03n") {
+          setIcon(drizzle_icon);
+        } else if (data.weather[0].icon === "04d" || data.weather[0].icon === "04n") {
+          setIcon(drizzle_icon);
+        } else if (data.weather[0].icon === "09d" || data.weather[0].icon === "09n") {
+          setIcon(rain_icon);
+        } else if (data.weather[0].icon === "10d" || data.weather[0].icon === "10n") {
+          setIcon(rain_icon);
+        } else if (data.weather[0].icon === "13d" || data.weather[0].icon === "13n") {
+          setIcon(snow_icon);
+        } else {
+          setIcon(clear_icon);
+        }
       }
     } catch (err) {
       const error = document.querySelector('.error_text');
@@ -92,25 +113,30 @@ const WeatherApp = () => {
   }
 
 // Format the adjusted time
+  // Determine if it's AM or PM
+  const amOrPm = adjustedHours < 12 ? 'AM' : 'PM';
+  // Convert hours to 12-hour format
   const adjustedFormattedHours = adjustedHours % 12 || 12;
-  const adjustedAmOrPm = adjustedHours >= 12 ? 'PM' : 'AM';
-  const adjustedTime = `${adjustedFormattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${adjustedAmOrPm}`;
+  // Format the adjusted time
+  const adjustedTime = `${adjustedFormattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${amOrPm}`;
   const dateString = `${dayOfWeekName} | ${day} ${monthName} ${year}`;
 
 
   return (
     <div className="container">
       <div className="top-content">
-        <div className="info-content">
-          <div className="error_text">{errorText}</div>
-          <div className="location-wrap">
-            <i className="location"></i>
-            <input type="text" placeholder="New York" className="cityName" value={inputValue}
-                   onChange={handleInputValue}/>
-            <img src={arrow_icon} alt="arrow" className="arrow" onClick={handleSearchCity}/>
-          </div>
+        <div className="error_text">{errorText}</div>
+        <div className="location-wrap">
+          <i className="location" onClick={handleSearchCity}></i>
+          <input type="text" placeholder="New York" className="cityName" value={inputValue}
+                 onChange={handleInputValue}/>
+          <i className="arrow" onClick={handleSearchCity}></i>
+        </div>
+        <div className="title">
           <h3
             className="weather_condition">{weatherData && weatherData.weather && weatherData.weather.length > 0 ? weatherData.weather[0].main : ''}</h3>
+        </div>
+        <div className="info-content">
           {weatherData && weatherData.main && typeof weatherData.main.temp !== 'undefined' && (
             <h2 className="temp">{Math.ceil(weatherData.main.temp - 273)}°C</h2>
           )}
@@ -119,7 +145,7 @@ const WeatherApp = () => {
           </p>
         </div>
         <div className="image_content">
-          <img src={cloud_icon} alt="weather-condition-icon"/>
+          <img src={weatherData ? icon : ''} alt=""/>
         </div>
       </div>
       <div className="main_content">
@@ -153,14 +179,14 @@ const WeatherApp = () => {
                 <img src={third_activity} alt="third_activity" className="activity_img"/>
                 <p className="activity_text">3km away</p>
               </div>
-              <div className="image_wrap">
-                <img src={fourth_activity} alt="fourth_activity" className="activity_img"/>
-                <p className="activity_text">500m away</p>
+              <div className="image_wrap" id="fourth_activity">
+                <img src={fourth_activity} alt="fourth_activity" className="activity_img" id="fourth_activity"/>
+                <p className="activity_text" id="fourth_text">500m away</p>
               </div>
             </div>
           </div>
           <div className="graphic_block">
-            <img src={graphic_img} alt="graphic"/>
+            <i className="graphic"/>
           </div>
         </div>
         <div className="detailed_content">
@@ -236,5 +262,9 @@ const WeatherApp = () => {
 }
 
 export default WeatherApp;
+
+
+
+
 
 
